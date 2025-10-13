@@ -1,0 +1,191 @@
+{
+    // ======================================================================
+    // 1. 文件与工作区管理
+    // ======================================================================
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "explorer.confirmDelete": false, // 禁用删除确认对话框
+    "diffEditor.ignoreTrimWhitespace": false,
+    // ======================================================================
+    // 2. 编辑器外观与字体
+    // ======================================================================
+    "editor.fontSize": 16,
+    "editor.tabSize": 2, // 提醒：Python 社区标准是 4
+    "editor.suggestSelection": "first",
+    "editor.fontFamily": "'Hack Nerd Font Mono','Fira Code', Consolas, 'Courier New', monospace",
+    "workbench.activityBar.orientation": "vertical", // Activity Bar 垂直显示
+    // 【新增/推荐】：代码质量和格式化
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    // ======================================================================
+    // 3. 终端与远程连接
+    // ======================================================================
+    "terminal.integrated.fontSize": 17,
+    "http.proxySupport": "off",
+    "http.proxy": "http://127.0.0.1:7890",
+    "http.proxyKerberosServicePrincipal": "http://127.0.0.1:7890",
+    "remote.SSH.remotePlatform": {
+        "192.168.1.100": "linux",
+        "local.arch.com": "linux",
+        "192.168.1.104": "linux"
+    },
+    // ======================================================================
+    // 4. 扩展与杂项
+    // ======================================================================
+    "redhat.telemetry.enabled": false,
+    "liveshare.authenticationProvider": "Microsoft",
+    "database-client.autoSync": true,
+    "svelte.enable-ts-plugin": true,
+    "debug.disassemblyView.showSourceCode": false,
+    // 【新增/推荐】：Vim 插件性能优化
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    // ======================================================================
+    // 5. 语言特定格式化程序
+    // ======================================================================
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "michelemelluso.code-beautifier"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "michelemelluso.code-beautifier"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "michelemelluso.code-beautifier"
+    },
+    // ======================================================================
+    // 6. Vim 模式配置
+    // ======================================================================
+    "vim.leader": "<space>",
+    "vim.useSystemClipboard": true, // 使用系统剪贴板 (y, p, d)
+    "vim.easymotion": true,
+    "vim.incsearch": true, // 渐进搜索
+    "vim.hlsearch": true, // 高亮搜索结果
+    "vim.useCtrlKeys": true, // 启用 Vim 对 Ctrl 键的接管
+    "vim.handleKeys": {
+        // 排除 Ctrl 键，使用 VS Code 的默认绑定 (如系统复制/粘贴/查找等)
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-c>": false,
+        "<C-v>": false
+    },
+    "vim.insertModeKeyBindings": [
+        // 快速退出插入模式
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // <leader> + d 映射为 dd (快速删除一行)
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        // Ctrl + n 清除搜索高亮
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        // K 映射为插入空行 (lineBreakInsert 是 VS Code 命令)
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ],
+            "silent": true
+        }
+    ],
+    // ======================================================================
+    // 7. 颜色主题覆盖（去斜体）
+    // ======================================================================
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                // 清除所有高频斜体元素的字体样式
+                "scope": [
+                    "comment",
+                    "punctuation.definition.comment",
+                    "keyword",
+                    "keyword.control",
+                    "storage",
+                    "storage.type",
+                    "storage.modifier",
+                    "entity.name.function",
+                    "entity.name.type",
+                    "constant",
+                    "variable.parameter",
+                    "variable.language",
+                    "markup.italic",
+                    "emphasis",
+                    "entity.other.attribute-name",
+                    // Python 特定关键字
+                    "keyword.control.import.python",
+                    "keyword.control.flow.python",
+                    "storage.type.function.python",
+                    "storage.type.class.python",
+                    "keyword.operator.logical.python",
+                    "keyword.control.exception.python",
+                    "keyword.control.with.python",
+                    "keyword.control.assert.python",
+                    "storage.modifier.global.python",
+                    "keyword.declaration.async.python"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "editor.semanticTokenColorCustomizations": {
+        "rules": {
+            // 强制清除所有语义高亮中的斜体样式
+            "*.italic": {
+                "fontStyle": ""
+            }
+        }
+    },
+    "python.languageServer": "Pylance",
+}
