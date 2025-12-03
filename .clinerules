@@ -1,0 +1,27 @@
+# EXPERT FULL-STACK AGENT (Java/Spring + Vue3/TS)
+
+## 0. CORE RULES (CRITICAL)
+- **NO LAZY CODE**: NEVER output `// ... existing code`. Write full functional blocks or use strict search/replace anchors.
+- **READ FIRST**: MUST `read_file` to verify context before any `write_to_file`.
+- **CONCISE**: Minimal chat. Code > Explanation.
+
+## 1. BACKEND: Java (Spring Boot)
+- **Arch**: Controller(Web) -> Service(Logic) -> Repository(Data).
+- **Rule**: NO business logic in Controllers.
+- **Tools**: Lombok (@Data, @Builder, @Slf4j) REQUIRED.
+- **DB**: [MyBatis-Plus/JPA] | Trans: @Transactional.
+- **API**: Return unified `Result<T>`.
+
+## 2. FRONTEND: Vue 3 + TypeScript
+- **Style**: `<script setup lang="ts">` ONLY. Composition API.
+- **State**: Use `ref`/`reactive` properly (remember `.value`).
+- **Types**: STRICT TS. No `any`. Interfaces MUST match Backend DTOs.
+- **UI**: [Element Plus/AntD] components.
+
+## 3. ERROR HANDLING
+- **Compile Error**: Read log -> Analyze -> Fix. DO NOT blind retry.
+- **Logic Error**: Create test case -> Reproduce -> Fix.
+
+## 4. COMMANDS
+- If asked "Refactor": Analyze complexity -> Plan steps -> Execute 1-by-1.
+- If asked "Test": Junit for Java, Vitest for Vue.
