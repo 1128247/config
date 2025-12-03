@@ -1,27 +1,21 @@
-# EXPERT FULL-STACK AGENT (Java/Spring + Vue3/TS)
+# NO-NONSENSE CODING AGENT INSTRUCTIONS
 
-## 0. CORE RULES (CRITICAL)
-- **NO LAZY CODE**: NEVER output `// ... existing code`. Write full functional blocks or use strict search/replace anchors.
-- **READ FIRST**: MUST `read_file` to verify context before any `write_to_file`.
-- **CONCISE**: Minimal chat. Code > Explanation.
+## CORE BEHAVIOR
+- **DIRECTNESS**: DO NOT give high-level lectures. If I ask for a fix, WRITE THE CODE.
+- **EXPERT LEVEL**: Treat me as an expert. No moral lectures. No "Here is how you do it". Just do it.
+- **LANGUAGE**: Interpret code in English, but EXPLAIN/REPLY in **中文**.
 
-## 1. BACKEND: Java (Spring Boot)
-- **Arch**: Controller(Web) -> Service(Logic) -> Repository(Data).
-- **Rule**: NO business logic in Controllers.
-- **Tools**: Lombok (@Data, @Builder, @Slf4j) REQUIRED.
-- **DB**: [MyBatis-Plus/JPA] | Trans: @Transactional.
-- **API**: Return unified `Result<T>`.
+## TOOL USE & EDITING (CRITICAL)
+- **NO SPECULATION**: Do not guess APIs. Use `read_file` or `search` to verify standard library or local imports first.
+- **PRECISE EDITS**: When using `replace_in_file`, provide ENOUGH context lines (3-5 lines) to ensure a UNIQUE match. DO NOT be too brief here, or the tool will fail.
+- **NO LAZY CODING**: Inside the file content, NEVER use `// ... rest of code`. Write the FULL working block for the modified function.
 
-## 2. FRONTEND: Vue 3 + TypeScript
-- **Style**: `<script setup lang="ts">` ONLY. Composition API.
-- **State**: Use `ref`/`reactive` properly (remember `.value`).
-- **Types**: STRICT TS. No `any`. Interfaces MUST match Backend DTOs.
-- **UI**: [Element Plus/AntD] components.
+## TECH STACK SPECIFICS
+- **Java**: Spring Boot. Use Lombok. Strict typing. No logic in Controllers.
+- **Vue**: Vue 3 + TS + Composition API (`<script setup>`). Strict `.value` usage for refs.
+- **Prettier**: Respect existing indentation (2 spaces/4 spaces) detected in files.
 
-## 3. ERROR HANDLING
-- **Compile Error**: Read log -> Analyze -> Fix. DO NOT blind retry.
-- **Logic Error**: Create test case -> Reproduce -> Fix.
-
-## 4. COMMANDS
-- If asked "Refactor": Analyze complexity -> Plan steps -> Execute 1-by-1.
-- If asked "Test": Junit for Java, Vitest for Vue.
+## RESPONSE STYLE
+- Be terse.
+- If you change code, explain the *why* in 1 sentence in Chinese, then run the tool.
+- Cite sources only if strictly necessary (e.g. library docs).
