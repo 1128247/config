@@ -1,0 +1,37 @@
+## Active Project Context (High Priority)
+
+### 1. Project Manifesto (项目概况)
+- **Name**: SpringBoot Enterprise Backend
+- **Goal**: 构建高可用、符合 RESTful 规范的企业级后端服务
+- **Current State**: [例如：开发阶段 / 维护阶段 / 正在从 Monolith 迁移到微服务]
+
+### 2. Tech Stack Matrix (技术栈矩阵)
+| Category | Technology | Version/Constraint |
+| :--- | :--- | :--- |
+| **Language** | Java | **JDK 17 LTS** or **21 LTS** (Strict typing) |
+| **Framework** | Spring Boot | **v3.2+** (Jakarta EE namespace) |
+| **Persistence** | Spring Data JPA / MyBatis-Plus | [根据实际选择保留一个] |
+| **Database** | MySQL / PostgreSQL | Use Snake_case for columns |
+| **Build Tool** | Maven / Gradle | Keep dependencies minimal |
+| **Utils** | Lombok, Hutool, MapStruct | Use `@Slf4j` for logging |
+
+### 3. Architecture Guidelines (架构规范)
+- **Layered Architecture**:
+  1.  **Controller**: 仅处理 HTTP 请求/响应，禁止包含业务逻辑。必须返回 `Result<T>` 统一包装类。
+  2.  **Service**: 核心业务逻辑层。必须面向接口编程 (Interface-based)。
+  3.  **Repository/Mapper**: 数据访问层。
+- **DTO Strategy**:
+  - **Do NOT** return Entity/POJO directly to Controller.
+  - **MUST** use DTO (Data Transfer Object) for all API inputs/outputs.
+  - Use `MapStruct` or `BeanUtils` for copying properties.
+- **Exception Handling**: 使用 `@RestControllerAdvice` 进行全局异常捕获，业务异常需抛出自定义 `BizException`。
+
+### 4. Critical Constraints (核心限制)
+- **DO NOT**:
+  - 禁止在循环中执行 SQL 查询 (N+1 Problem)。
+  - 禁止使用 `System.out.println`，必须使用 Logback/Slf4j。
+  - 禁止 Controller 层直接捕获 `Exception` 吃掉错误堆栈。
+- **MUST**:
+  - 所有公共方法必须包含 Javadoc 注释。
+  - 数据库操作必须包含事务注解 `@Transactional` (在 Service 层)。
+  - 遵循阿里巴巴 Java 开发手册规范。
