@@ -1,0 +1,35 @@
+## Active Project Context (High Priority)
+
+### 1. Project Manifesto (项目概况)
+- **Name**: React SaaS Platform
+- **Goal**: 构建组件化、可维护性强的 React 应用
+- **Current State**: [例如：正在重构 UI 层]
+
+### 2. Tech Stack Matrix (技术栈矩阵)
+| Category | Technology | Version/Constraint |
+| :--- | :--- | :--- |
+| **Core** | React | **v18+** (Functional Components only) |
+| **Framework** | Vite / Next.js | [根据项目选择] |
+| **Language** | TypeScript | Strict Mode |
+| **State** | Zustand / Redux Toolkit | Immutable updates mandatory |
+| **Styling** | Tailwind CSS / Styled-components | Mobile-first approach |
+| **Fetching** | React Query (TanStack Query) | Avoid raw `useEffect` for fetching |
+
+### 3. Architecture Guidelines (架构规范)
+- **Component Pattern**:
+  - 仅使用 **Functional Components** + **Hooks**。禁止 Class Components。
+  - 展示组件 (Presentational) 与容器组件 (Container) 适当分离。
+- **Hooks Rules**:
+  - 自定义 Hook 必须以 `use` 开头。
+  - 严格遵守 `useEffect` 依赖数组规则 (React Strict Mode 会检查)。
+- **File Structure**:
+  - Feature-based architecture (e.g., `src/features/auth/components`).
+
+### 4. Critical Constraints (核心限制)
+- **DO NOT**:
+  - 禁止在渲染过程中进行副作用操作 (Side Effects)。
+  - 禁止使用 `index` 作为列表渲染的 key (`key={index}` is bad practice)。
+  - 禁止 Prop Drilling (超过 3 层请使用 Context 或 State Manager)。
+- **MUST**:
+  - 所有组件 Props 必须定义 Interface。
+  - 使用 `useMemo` and `useCallback` 优化昂贵的计算或引用稳定性。
