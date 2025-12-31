@@ -1,0 +1,35 @@
+## Active Project Context (High Priority)
+
+### 1. Project Manifesto (项目概况)
+- **Name**: Modern Vue3 Dashboard
+- **Goal**: 构建响应式、高性能的现代化前端应用
+- **Current State**: [例如：功能迭代中，核心组件库已建立]
+
+### 2. Tech Stack Matrix (技术栈矩阵)
+| Category | Technology | Version/Constraint |
+| :--- | :--- | :--- |
+| **Core** | Vue.js | **v3.4+** (Script Setup required) |
+| **Language** | TypeScript | **v5.0+** (Strict Mode Enabled) |
+| **Build** | Vite | Use alias `@/` for `src/` |
+| **State** | Pinia | No Vuex allowed |
+| **UI Library** | Element Plus / Ant Design Vue | On-demand import (按需加载) |
+| **Styling** | SCSS / Tailwind CSS | Scoped styles by default |
+
+### 3. Architecture Guidelines (架构规范)
+- **Component Style**:
+  - 强制使用 **Composition API** (`<script setup lang="ts">`)。
+  - 禁止使用 Options API (`data`, `methods` 等旧写法)。
+- **Directory Structure**:
+  - `src/api`: 所有的 Axios 请求封装，禁止在组件内直接调用 `axios.get`。
+  - `src/composables`: 复用逻辑提取为 Hooks (useXxx)。
+  - `src/stores`: Pinia 状态管理。
+- **Type Safety**:
+  - `props` 和 `emits` 必须定义 TypeScript 类型接口。
+
+### 4. Critical Constraints (核心限制)
+- **DO NOT**:
+  - **严禁使用 `any` 类型**。无法确定类型时使用 `unknown` 并收窄。
+  - 禁止直接操作 DOM (如 `document.getElementById`)，必须使用 `ref`。
+- **MUST**:
+  - 组件名称必须为多单词 (Multi-word)，如 `UserCard.vue`。
+  - 异步操作必须使用 `async/await`，避免回调地狱。
